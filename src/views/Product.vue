@@ -1,31 +1,26 @@
 <template>
   <div class="wrapper-prod">
-      <header class="navbar navbar-light bg-light">
-        <a class="navbar-brand">Product</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="type here..." aria-label="Search" >
-            <button 
-            @click="isHidden = true"
-            class="btn btn-outline-success my-2 my-sm-0" 
-            type="submit"><img 
-            src="https://user-images.githubusercontent.com/34501764/101978430-753b3c80-3c87-11eb-8d47-5d36618c1665.png" 
-            width="20px" height="20px"
-            alt="">
-            </button>
-        </form>
+      <header>
+          <Header/>
       </header>
       <nav>
           <Nav/>
       </nav>
       <main>
           <div class="wadah">
-            <div v-for="item in datas" :key="item.product_id">
-                <Cards :image="item.product_img" :name="item.product_name" :price="item.product_price" /> 
+            <div v-for="item in getProduct" :key="item.product_id">
+                <Cards 
+                    :image="item.product_img" 
+                    :name="item.product_name" 
+                    :price="item.product_price" 
+                    :product="item"
+                /> 
             </div>
           </div>
       </main> 
       <aside>
-            <Cart />
+            <Cart
+            />
       </aside>
   </div>
 </template>
@@ -33,29 +28,31 @@
 <script>
 import Nav from '../components/Nav'
 import Cart from '../components/Cart'
-import axios from 'axios';
 import Cards from '../components/Cards.vue';
+import {mapGetters, mapActions} from 'vuex'
+import Header from '../components/Header';
 
 export default {
     name: "Product",
     components: {
         Nav,
         Cart,
-        Cards
+        Cards,
+        Header
     },
     data() {
         return {
-            datas: null
+            
         }
     },
+    methods: {
+        ...mapActions(["fetching"])
+    },
+    computed: {
+        ...mapGetters(["getProduct"])
+    },
     mounted() {
-        axios.get('http://localhost:3000/product')
-            .then((res) => {
-                this.datas = res.data.result
-                console.log(res.data.result)
-            }).catch((err) => {
-                console.log(err)
-            });
+        this.fetching()
     }
 }
 </script>

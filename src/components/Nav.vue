@@ -25,32 +25,24 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="text-left">
+                <form class="text-left" @submit="addProduct" method="post">
                   <div class="form-group">
                     <label for="formGroupExampleInput">Name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="insert menu's name" v-model="newProduct">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="insert menu's name" v-model="product_name">
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Price</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert menu's price" v-model="newPrice">
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert menu's price" v-model="product_price">
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Image Url</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert menu's url" v-model="newImage">
-                  </div>
-                  <div class="form-group">
-                    <label for="formGroupExampleInput2">Category</label>
-                    <select class="custom-select">
-                      <option selected>Choose category</option>
-                      <option value="1">Food</option>
-                      <option value="2">Beverage</option>
-                    </select>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert menu's url" v-model="product_img">
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add Product</button>
+                <button type="submit" class="btn btn-primary">Add Product</button>
               </div>
             </div>
           </div>
@@ -61,21 +53,26 @@
 
 <script>
 // import Axios from 'axios'
+
 export default {
     name: "Nav",
     data() {
       return {
-        newProduct: '',
-        newprice: null,
-        newimage: '',
-
+        post: {
+          product_name: null,
+          product_price: null,
+          product_img: null
+          
+        }
       }
     },
-    // methods() {
-    //   addProduct() {
-    //     Axios.post('localhost:3000/product',)
-    //   }
-    // }
+    methods: {
+      addProduct(e) {
+        // Axios.post('localhost:3000/product',)
+        console.warn(this.post)
+        e.preventDefault()
+      }
+    }
 }
 </script>
 

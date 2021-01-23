@@ -5,13 +5,15 @@
             <div class="card-body">
                 <h5 class="card-title">{{name}}</h5>
                 <p class="card-text">{{price}}</p>
-                <a href="#" @click="addToCart(item)" class="btn btn-primary" >Add to Cart</a>
+                <a href="#" @click="addToCart(product)" class="btn btn-primary" >Add to Cart</a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
     name: "Cards",
     props: {
@@ -26,7 +28,16 @@ export default {
         price: {
             type: Number,
             require: true
+        },
+        product: {
+            type: Object,
+            require: true
         }
+    },
+    computed: {
+    },
+    methods: {
+        ...mapActions(["addToCart"])
     }
 }
 </script>
