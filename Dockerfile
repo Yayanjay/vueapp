@@ -1,10 +1,10 @@
 FROM node:latest
 
-ENV NODE_ENV=production
+RUN mkdir -p /usr/cafeapp
 
-WORKDIR /app
+WORKDIR /usr/cafeapp
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json ./
 
 COPY . .
 
