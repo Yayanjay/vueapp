@@ -1,28 +1,33 @@
 <template>
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+    <b-navbar-brand href="#">Cafe App</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-
-        <b-button variant="dark" class="mr-2">
-          <router-link to="/login"> Login </router-link>
-        </b-button>
-        <b-button variant="dark" class="ml-2">Register</b-button>
+      <b-navbar-nav class="auth-opt ml-auto">
+        <button class="login-option btn btn-dark mr-2">
+          <router-link to="/login">Login</router-link>
+        </button>
+        <button class="register-option btn btn-dark ">
+          <router-link to="/register">Register</router-link>
+        </button>
 
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
+  <div class="auth">
+    <Login></Login>
+    <!-- <Regist></Regist> -->
+  </div>
 </div>
 </template>
 
 <script>
-// import Register from '../components/Regist';
-// import Login from '../components/Login';
+import Login from '../components/Login';
+// import Regist from '../components/Regist.vue';
 export default {
   name: "Home",
   data() {
@@ -31,8 +36,8 @@ export default {
     }
   },
   components: {
-    // Register,
-    // Login
+    Login,
+    // Regist
   },
   methods: {
     shuffleForm(value) {
@@ -48,7 +53,7 @@ export default {
 </script>
 
 <style>
-.vue-bg {
-  background: #bce5d0;
+.auth-opt {
+  text-decoration: none;
 }
 </style>

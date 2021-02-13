@@ -11,7 +11,7 @@ const getters = {
 }
 const actions = {
     fetching({commit}) {
-        axios.get('http://localhost:8000/product')
+        axios.get('http://localhost:3000/api/product')
             .then((res) => {
                 commit("setProduct", res.data.result)
             }).catch((err) => {
